@@ -30,7 +30,7 @@
         var c = d.expires;
         if ("number" == typeof d.expires) {
             c = new Date();
-            c.setTime(c.getTime() + d.expires)
+            c.setTime(c.getTime() + d.expires * 1000)
         }
         document.cookie = e + "=" + f + (d.path ? "; path=" + d.path : "") + (c ? "; expires=" + c.toGMTString() :
             "") + (d.domain ? "; domain=" + d.domain : "") + (d.secure ? "; secure" : "")
@@ -50,8 +50,8 @@
         return "";
     }
 
-    if (document.referrer) {
-        b.cookie.set('txu-ref', (document.referrer), { expires: 3600 });
+    if (b.getquery("ref")) {
+        b.cookie.set('txu-ref', (b.getquery("ref")), { expires: 3600 });
     }
     if (b.getquery("g")) {
         b.cookie.set('txu-gid', b.getquery("g"), { expires: 3600 });
